@@ -5,11 +5,20 @@ using System.Collections;
 
 public class unityWebcamtexture : MonoBehaviour
 {
+	public WebCamTexture webcamTexture;
+
+	public int index = 0;
     void Start()
     {
-        WebCamTexture webcamTexture = new WebCamTexture();
-        Renderer renderer = GetComponent<Renderer>();
-        renderer.material.mainTexture = webcamTexture;
-        webcamTexture.Play();
+		WebCamDevice[] devices = WebCamTexture.devices;
+        if (devices.Length > 0)
+        {
+			webcamTexture = new WebCamTexture();
+            webcamTexture.deviceName = devices[index % devices.Length].name; // last
+            webcamTexture.Play();
+
+			Renderer renderer = GetComponent<Renderer>();
+			renderer.material.mainTexture = webcamTexture;
+        }
     }
 }

@@ -12,24 +12,24 @@ public class unityAuthorization : MonoBehaviour
 {
     IEnumerator Start()
     {
-        findWebCams();
 
         yield return Application.RequestUserAuthorization(UserAuthorization.WebCam);
         if (Application.HasUserAuthorization(UserAuthorization.WebCam))
         {
             Debug.Log("webcam found");
+        	findWebCams();
         }
         else
         {
             Debug.Log("webcam not found");
         }
 
-        findMicrophones();
 
         yield return Application.RequestUserAuthorization(UserAuthorization.Microphone);
         if (Application.HasUserAuthorization(UserAuthorization.Microphone))
         {
             Debug.Log("Microphone found");
+        	findMicrophones();
         }
         else
         {
@@ -48,7 +48,7 @@ public class unityAuthorization : MonoBehaviour
     void findMicrophones()
     {
 		// player did not compile?!
-		
+
         // foreach (var device in Microphone.devices)
         // {
         //     Debug.Log("Name: " + device);
